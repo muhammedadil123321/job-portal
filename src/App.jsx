@@ -37,7 +37,7 @@ const App = () => {
   }, []);
 
   
-console.log("kjsfhjds");
+
 
   return (
     <div className="overflow-x-hidden scroll-smooth">
