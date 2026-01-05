@@ -1,21 +1,33 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-import About from './pages/About';
-import Login from './pages/auth/Login';
-import SignUp from './pages/auth/SignUp';
-import FindJob from './pages/FindJob';
+/* Layouts */
+import UserLayout from "../src/layouts/UserLayout";
+import AuthLayout from "../src/layouts/AuthLayout";
+import EmployerLayout from "../src/layouts/EmployerLayout";
 
+/* User or job seeker Pages  */
+import Home from "./pages/User/Home";
+import About from "./pages/User/About";
+import FindJob from "./pages/User/FindJob";
+
+
+/* Auth Pages */
+import Login from "./pages/auth/Login";
+import SignUp from "./pages/auth/SignUp";
+import ViewJobDetails from "./pages/User/ViewJobDetails";
+
+import EmployerDashboard from "./pages/Employer/EmployerDashboard";
+import PostJob from "./pages/Employer/PostJob";
+import ManageJobs from "./pages/Employer/ManageJobs";
+import Candidates from "./pages/Employer/Candidates";
+import Profile from "./pages/Employer/Profile";
+import ViewPostJobDetails from "./pages/Employer/ViewPostJobDetails";
+import EditPostJob from "./pages/Employer/EditPostJob";
 
 const App = () => {
-  const location = useLocation(); // ← detect current route
-
   useEffect(() => {
     AOS.init({
       duration: 700,
@@ -24,26 +36,38 @@ const App = () => {
     });
   }, []);
 
-  // Check if current path is /auth
-  const hideLayout = location.pathname === "/login" || location.pathname === "/signup";
-
   return (
-    <div className='overflow-x-hidden scroll-smooth'>
-
-      {/* Hide Navbar on /auth */}
-      {!hideLayout && <Navbar />}
-
+    <div className="overflow-x-hidden scroll-smooth">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/findjob" element={<FindJob/>}/>
-        {/* Auth Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
 
-      {/* Hide Footer on /auth */}
-      {!hideLayout && <Footer />}
+        {/* AUTH ROUTES (no navbar/footer) */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
+
+        {/* USER ROUTES (with navbar/footer) */}
+        <Route element={<UserLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/findjob" element={<FindJob />} />
+         <Route path="/view-job/:id" element={<ViewJobDetails />} />
+        </Route>
+
+        {/* Emplyer ROUTES (with navbar/footer) */}
+        <Route path="/employer" element={<EmployerLayout />}>
+        
+          <Route index element={<EmployerDashboard />} />
+          <Route path="/employer/post-job" element={<PostJob />} />
+          <Route path="/employer/manage-jobs" element={<ManageJobs />} />
+          <Route path="/employer/applicants" element={<Candidates />} />
+          <Route path="/employer/company-profile" element={<Profile />} />
+           {/* <Route path="/employer/manage-jobs/view-job/:id" element={<ViewPostJobDetails/>} /> */}
+            <Route path="manage-jobs/view-job/:id" element={<ViewPostJobDetails />} />
+            <Route path="manage-jobs/edit-job/:id" element={<EditPostJob />} />
+        </Route>
+
+      </Routes>
     </div>
   );
 };

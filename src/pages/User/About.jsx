@@ -165,8 +165,8 @@ const About = () => {
                     key={index} 
                     className="relative group flex items-center gap-4 px-6 py-5 rounded-2xl  hover:shadow-xl transition-all duration-300 shadow-sm  overflow-hidden"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                    <div className={`relative z-10 bg-gradient-to-br ${item.gradient} p-3 rounded-xl shadow-md`}>
+                    <div className={`absolute inset-0 bg-linear-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                    <div className={`relative z-10 bg-linear-to-br ${item.gradient} p-3 rounded-xl shadow-md`}>
                       <item.icon className="w-7 h-7 text-white" />
                     </div>
                     <div className="relative z-10 ">

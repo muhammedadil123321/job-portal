@@ -92,8 +92,7 @@ const MainHero = () => {
           </p>
         </div>
 
-         {/* Updated Buttons - Following your size and structure */}
-         {/* Updated Buttons - Clean and Simple */}
+         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pb-8">
           {/* Find Jobs - Transparent with blur and border */}
           <button className="bg-transparent text-white font-semibold px-8 py-3 rounded-sm transition-all duration-600 border-2 border-white/70 hover:border-white/80 shadow-lg hover:shadow-white/20 hover:scale-105 cursor-pointer ">

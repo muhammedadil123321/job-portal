@@ -6,7 +6,15 @@
    overflow-x:hidden;
 } 
 
-*::-webkit-scrollbar { display: none; }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+
+
+
+
 .font-outfit{
   font-family: "Outfit", sans-serif;
 }
