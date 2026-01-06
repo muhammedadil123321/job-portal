@@ -9,15 +9,16 @@ import {
   Users,
   CheckCircle,
 } from "lucide-react";
-import { INITIALJOBS } from "../../jobDetails/jobCardDetails";
-import { useParams, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
+import { useParams, useNavigate } from "react-router-dom";
+import { JobContext } from "../../context/JobContext";
 const ViewPostJobDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const jobId = Number(id);
-  const job = INITIALJOBS.find((j) => j.id === jobId);
+  const { jobs } = useContext(JobContext);
+  const job = jobs.find((j) => j.id === jobId);
 
   const getStatusStyle = (status) => {
     switch (status) {
